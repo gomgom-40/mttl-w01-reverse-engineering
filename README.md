@@ -384,7 +384,8 @@ Honest evidence tagging is the backbone of this work.
 ├── MTTL-W01_Reverse_Engineering_Thesis_EN_v1_final.pdf ← full thesis (13 pp.)
 ├── local_provision.py                                 ← SoftAP provisioning tool (documented)
 ├── comMTTL-W01_1.0.66.fwr                             ← reference stock firmware (see NOTICE)
-└── NOTICE.md                                          ← licensing & ownership of the firmware image
+├── NOTICE.md                                          ← licensing & ownership of the firmware image
+├── LICENSE                                            ← CC BY 4.0 legal code
 ```
 
 | File | Size | Purpose |
@@ -393,6 +394,8 @@ Honest evidence tagging is the backbone of this work.
 | `local_provision.py` | 5.7 KB | Automates `LGAPMODE0010` provisioning end-to-end |
 | `comMTTL-W01_1.0.66.fwr` | 327 KB | Reference image for hash/XOR verification |
 | `architecture.svg` | — | Vector diagram used in the thesis pipeline |
+| `NOTICE.md` | 2.6 KB | Firmware ownership, checksums, scope of use |
+| `LICENSE` | 19 KB | CC BY 4.0 legal code |
 
 ---
 
@@ -524,7 +527,7 @@ MTTL-W01 Smart Power Strip*, Zenodo, v1, 2026. doi:10.5281/zenodo.23405440
 
 | Component | License |
 |---|---|
-| Thesis (PDF), `README.md`, `architecture.svg`, `local_provision.py` | **CC BY 4.0** |
+| Thesis (PDF), `README.md`, `architecture.svg`, `local_provision.py`, `LICENSE` | **CC BY 4.0** |
 | `comMTTL-W01_1.0.66.fwr` (stock firmware) | **Not** CC BY — property of its original rights holder, included **solely for verification**. See [`NOTICE.md`](NOTICE.md). |
 
 ---
