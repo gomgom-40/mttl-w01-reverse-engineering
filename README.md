@@ -2,7 +2,7 @@
 
 ### Architecture & Protocol Analysis of the LG U+ Smart Power Strip
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23405440.svg)](https://doi.org/10.5281/zenodo.23405440)
+[![DOI](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.23405440-blue.svg)](https://doi.org/10.5281/zenodo.23405440)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 [![Platform](https://img.shields.io/badge/platform-Realtek%20RTL8711AF-blue)](https://www.realtek.com/)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/)
