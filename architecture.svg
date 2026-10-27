@@ -1,0 +1,153 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+  <title id="title">MTTL-W01 layered architecture</title>
+  <desc id="desc">Four independent layers: provisioning over SoftAP and TCP 30300, identity and registration through MEF, runtime control over oneM2M and MQTT-TLS, and hardware actuation through a two-wire bit-banged bus to the relay driver.</desc>
+
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#6e7781"/>
+    </marker>
+    <marker id="arrowAccent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#4c8eda"/>
+    </marker>
+    <style>
+      .band   { fill:#ffffff; stroke:#d8dee4; stroke-width:1.2; }
+      .pill   { fill:#eaeef2; }
+      .pilltx { font: 700 11px "Segoe UI",Helvetica,Arial,sans-serif; fill:#24292f; letter-spacing:1.1px; }
+      .box    { fill:#f6f8fa; stroke:#d0d7de; stroke-width:1.4; }
+      .boxhi  { fill:#eef5ff; stroke:#4c8eda; stroke-width:1.6; }
+      .boxhw  { fill:#fff8e8; stroke:#d4a72c; stroke-width:1.4; }
+      .t      { font: 600 14px "Segoe UI",Helvetica,Arial,sans-serif; fill:#1f2328; }
+      .s      { font: 12px "Segoe UI",Helvetica,Arial,sans-serif; fill:#57606a; }
+      .lab    { font: 11.5px "Segoe UI",Helvetica,Arial,sans-serif; fill:#57606a; }
+      .labhi  { font: 600 11.5px "Segoe UI",Helvetica,Arial,sans-serif; fill:#4c8eda; }
+      .ln     { stroke:#6e7781; stroke-width:1.4; fill:none; }
+      .lnh    { stroke:#4c8eda; stroke-width:1.6; fill:none; }
+      .lnd    { stroke:#8c959f; stroke-width:1.3; fill:none; stroke-dasharray:5 4; }
+      .title  { font: 700 21px "Segoe UI",Helvetica,Arial,sans-serif; fill:#1f2328; }
+      .sub    { font: 12.5px "Segoe UI",Helvetica,Arial,sans-serif; fill:#57606a; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="840" fill="#ffffff"/>
+
+  <text class="title" x="40" y="44">MTTL-W01 — Layered Architecture</text>
+  <text class="sub" x="40" y="66">LG U+ / Tonly smart power strip · Realtek RTL8711AF · four independent trust boundaries</text>
+
+  <!-- ================= BAND 1 : PROVISIONING ================= -->
+  <rect class="band" x="30" y="86" width="1140" height="150" rx="12"/>
+  <rect class="pill" x="48" y="100" width="132" height="22" rx="11"/>
+  <text class="pilltx" x="114" y="115" text-anchor="middle">① PROVISIONING</text>
+
+  <rect class="box" x="60" y="136" width="250" height="72" rx="10"/>
+  <text class="t" x="185" y="166" text-anchor="middle">Phone app /</text>
+  <text class="t" x="185" y="186" text-anchor="middle">local_provision.py</text>
+
+  <rect class="boxhi" x="470" y="136" width="250" height="72" rx="10"/>
+  <text class="t" x="595" y="166" text-anchor="middle">Device SoftAP</text>
+  <text class="s" x="595" y="186" text-anchor="middle">192.168.1.1 : 30300</text>
+
+  <rect class="box" x="880" y="136" width="250" height="72" rx="10"/>
+  <text class="t" x="1005" y="166" text-anchor="middle">Home Wi-Fi</text>
+  <text class="s" x="1005" y="186" text-anchor="middle">STA mode after apply</text>
+
+  <line class="ln" x1="312" y1="172" x2="462" y2="172" marker-end="url(#arrow)"/>
+  <text class="lab" x="387" y="156" text-anchor="middle">LGAPMODE0010</text>
+  <text class="lab" x="387" y="196" text-anchor="middle">0x67 · 0x65 · 0x72</text>
+
+  <line class="ln" x1="722" y1="172" x2="872" y2="172" marker-end="url(#arrow)"/>
+  <text class="lab" x="797" y="156" text-anchor="middle">join + reboot</text>
+  <text class="lab" x="797" y="196" text-anchor="middle">15–20 s, no power cycle</text>
+
+  <!-- ================= BAND 2 : IDENTITY ================= -->
+  <rect class="band" x="30" y="252" width="1140" height="150" rx="12"/>
+  <rect class="pill" x="48" y="266" width="196" height="22" rx="11"/>
+  <text class="pilltx" x="146" y="281" text-anchor="middle">② IDENTITY / REGISTRATION</text>
+
+  <rect class="box" x="60" y="302" width="250" height="72" rx="10"/>
+  <text class="t" x="185" y="332" text-anchor="middle">MTTL-W01</text>
+  <text class="s" x="185" y="352" text-anchor="middle">device certificate</text>
+
+  <rect class="box" x="470" y="302" width="250" height="72" rx="10"/>
+  <text class="t" x="595" y="332" text-anchor="middle">MEF / HTTP</text>
+  <text class="s" x="595" y="352" text-anchor="middle">registration · certs · OTA check</text>
+
+  <rect class="box" x="880" y="302" width="250" height="72" rx="10"/>
+  <text class="t" x="1005" y="332" text-anchor="middle">Operator PKI</text>
+  <text class="s" x="1005" y="352" text-anchor="middle">session credentials</text>
+
+  <line class="ln" x1="312" y1="338" x2="462" y2="338" marker-end="url(#arrow)"/>
+  <text class="lab" x="387" y="322" text-anchor="middle">present cert</text>
+
+  <line class="ln" x1="722" y1="338" x2="872" y2="338" marker-end="url(#arrow)"/>
+  <text class="lab" x="797" y="322" text-anchor="middle">verify chain</text>
+
+  <line class="lnd" x1="880" y1="362" x2="724" y2="362" marker-end="url(#arrow)"/>
+  <text class="lab" x="800" y="380" text-anchor="middle">dynamic keys (not hard-coded)</text>
+
+  <!-- ================= BAND 3 : RUNTIME ================= -->
+  <rect class="band" x="30" y="418" width="1140" height="150" rx="12"/>
+  <rect class="pill" x="48" y="432" width="158" height="22" rx="11"/>
+  <text class="pilltx" x="127" y="447" text-anchor="middle">③ RUNTIME CONTROL</text>
+
+  <rect class="box" x="60" y="468" width="250" height="72" rx="10"/>
+  <text class="t" x="185" y="498" text-anchor="middle">User app</text>
+  <text class="s" x="185" y="518" text-anchor="middle">account · state · energy</text>
+
+  <rect class="box" x="470" y="468" width="250" height="72" rx="10"/>
+  <text class="t" x="595" y="498" text-anchor="middle">LG U+ Cloud</text>
+  <text class="s" x="595" y="518" text-anchor="middle">oneM2M CSE · ACP policy</text>
+
+  <rect class="boxhi" x="880" y="468" width="250" height="72" rx="10"/>
+  <text class="t" x="1005" y="498" text-anchor="middle">MTTL-W01</text>
+  <text class="s" x="1005" y="518" text-anchor="middle">AE · ACP · CIN · subscription</text>
+
+  <line class="ln" x1="312" y1="504" x2="462" y2="504" marker-end="url(#arrow)"/>
+  <text class="lab" x="387" y="488" text-anchor="middle">HTTPS REST</text>
+
+  <line class="lnh" x1="722" y1="504" x2="872" y2="504" marker-end="url(#arrowAccent)"/>
+  <text class="labhi" x="797" y="488" text-anchor="middle">MQTT / TLS 1.2 · :18831</text>
+
+  <line class="lnd" x1="878" y1="528" x2="726" y2="528" marker-end="url(#arrow)"/>
+  <text class="lab" x="802" y="546" text-anchor="middle">PUBACK ≠ relay actuation</text>
+
+  <!-- ================= BAND 4 : HARDWARE ================= -->
+  <rect class="band" x="30" y="584" width="1140" height="222" rx="12"/>
+  <rect class="pill" x="48" y="598" width="214" height="22" rx="11"/>
+  <text class="pilltx" x="155" y="613" text-anchor="middle">④ HARDWARE ACTUATION</text>
+
+  <rect class="box" x="58" y="636" width="184" height="72" rx="10"/>
+  <text class="t" x="150" y="666" text-anchor="middle">Image2</text>
+  <text class="s" x="150" y="686" text-anchor="middle">command parser</text>
+
+  <rect class="box" x="290" y="636" width="160" height="72" rx="10"/>
+  <text class="t" x="370" y="666" text-anchor="middle">Shared state</text>
+  <text class="s" x="370" y="686" text-anchor="middle">power flags</text>
+
+  <rect class="box" x="498" y="636" width="170" height="72" rx="10"/>
+  <text class="t" x="583" y="666" text-anchor="middle">BSP task</text>
+  <text class="s" x="583" y="686" text-anchor="middle">tonly_bsp_tap_task</text>
+
+  <rect class="boxhw" x="716" y="636" width="188" height="72" rx="10"/>
+  <text class="t" x="810" y="666" text-anchor="middle">GPIO RMW + STR</text>
+  <text class="s" x="810" y="686" text-anchor="middle">PB2 (0x12) / PB3 (0x13)</text>
+
+  <rect class="boxhw" x="950" y="636" width="196" height="72" rx="10"/>
+  <text class="t" x="1048" y="666" text-anchor="middle">T4118 @ 0xA8</text>
+  <text class="s" x="1048" y="686" text-anchor="middle">reg 0x13 · 4-byte frame</text>
+
+  <line class="ln" x1="244" y1="672" x2="282" y2="672" marker-end="url(#arrow)"/>
+  <line class="ln" x1="452" y1="672" x2="490" y2="672" marker-end="url(#arrow)"/>
+  <line class="ln" x1="670" y1="672" x2="708" y2="672" marker-end="url(#arrow)"/>
+  <line class="ln" x1="906" y1="672" x2="942" y2="672" marker-end="url(#arrow)"/>
+  <text class="lab" x="924" y="656" text-anchor="middle">bit-bang</text>
+
+  <rect class="boxhw" x="950" y="740" width="196" height="52" rx="10"/>
+  <text class="t" x="1048" y="772" text-anchor="middle">4 × HFE39 relays</text>
+  <line class="ln" x1="1048" y1="710" x2="1048" y2="734" marker-end="url(#arrow)"/>
+
+  <text class="lab" x="58" y="752">coil frame → wait ≈100 ms → release frame</text>
+  <text class="lab" x="58" y="772">“verified” flag means the bus is ready —</text>
+  <text class="lab" x="58" y="792">not that a mechanical contact has closed.</text>
+
+  <text class="sub" x="600" y="828" text-anchor="middle">Evidence classes: live capture · static disassembly (Ghidra) · later-published source code</text>
+</svg>
